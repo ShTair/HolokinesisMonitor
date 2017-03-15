@@ -5,7 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HolokinesisMonitor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="MainWindow" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Grid Height="500" Width="500">
+        <Grid Width="500" Height="500" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="0"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid Width="100" Height="100" VerticalAlignment="Top">
+                <Ellipse StrokeThickness="5" Stroke="Red" />
+                <TextBlock RenderTransformOrigin="0.5,0.5" Text="10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="0"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
