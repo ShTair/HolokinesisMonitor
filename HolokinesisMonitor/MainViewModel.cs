@@ -11,11 +11,13 @@ namespace HolokinesisMonitor
             Targets = new ObservableCollection<TargetModel>();
             for (int i = 0; i < 10; i++)
             {
-                Targets.Add(new TargetModel
+                var tm = new TargetModel
                 {
                     Id = i + 10,
                     Angle = (360 / 10) * i
-                });
+                };
+                Targets.Add(tm);
+                tm.Start();
             }
         }
     }

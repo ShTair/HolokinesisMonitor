@@ -10,7 +10,6 @@ namespace HolokinesisMonitor
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
     }
 }
