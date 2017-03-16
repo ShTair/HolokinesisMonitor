@@ -46,6 +46,7 @@
                 <Ellipse Fill="Red" />
                 <ed:Arc ArcThickness="1" ArcThicknessUnit="Percent" EndAngle="{Binding Angle}" Fill="Lime"
                 Stretch="None" StartAngle="0"/>
+                <Ellipse Fill="Black" Width="160" Height="160" />
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
                     <StackPanel.Resources>
                         <Style TargetType="TextBlock">
@@ -53,7 +54,7 @@
                         </Style>
                     </StackPanel.Resources>
                     <TextBlock Text="{Binding Percentage}" FontSize="70" />
-                    <TextBlock Text="%" VerticalAlignment="Bottom" FontSize="50" />
+                    <TextBlock Text="%" VerticalAlignment="Bottom" FontSize="40" />
                 </StackPanel>
             </Grid>
         </Grid>
