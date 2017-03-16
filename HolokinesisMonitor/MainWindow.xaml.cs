@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
 
 namespace HolokinesisMonitor
 {
@@ -12,9 +14,24 @@ namespace HolokinesisMonitor
             InitializeComponent();
         }
 
-        private void Window_Closed(object sender, System.EventArgs e)
+        private void Window_Closed(object sender, EventArgs e)
         {
             ((MainViewModel)DataContext).Dispose();
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Q:
+                    WindowState = WindowState.Maximized;
+                    WindowStyle = WindowStyle.None;
+                    break;
+                case Key.W:
+                    WindowStyle = WindowStyle.SingleBorderWindow;
+                    WindowState = WindowState.Normal;
+                    break;
+            }
         }
     }
 }
