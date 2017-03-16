@@ -6,7 +6,7 @@
         xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
         x:Class="HolokinesisMonitor.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
+        Title="Holokinesis Monitor" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
         Closed="Window_Closed">
     <Window.DataContext>
         <local:MainViewModel />
