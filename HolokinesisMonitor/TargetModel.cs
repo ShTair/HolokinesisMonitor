@@ -15,25 +15,37 @@ namespace HolokinesisMonitor
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public event Action<bool> StatusChanged;
+
+        public bool Status
+        {
+            get { return _Status; }
+            private set
+            {
+                if (_Status == value) return;
+                _Status = value;
+                Color = value ? "Lime" : "Red";
+                StatusChanged?.Invoke(value);
+                PropertyChanged?.Invoke(this, _StatusChangedEventArgs);
+            }
+        }
+        private bool _Status;
+        private PropertyChangedEventArgs _StatusChangedEventArgs = new PropertyChangedEventArgs(nameof(Status));
+
         public string Color
         {
             get { return _Color; }
-            set
+            private set
             {
                 if (_Color == value) return;
                 _Color = value;
                 PropertyChanged?.Invoke(this, _ColorChangedEventArgs);
             }
         }
-        private string _Color;
+        private string _Color = "Red";
         private PropertyChangedEventArgs _ColorChangedEventArgs = new PropertyChangedEventArgs(nameof(Color));
 
         public bool IsDisposed { get; private set; }
-
-        public TargetModel()
-        {
-            Color = "Red";
-        }
 
         public async void Start()
         {
@@ -42,15 +54,7 @@ namespace HolokinesisMonitor
                 while (!IsDisposed)
                 {
                     var res = await ping.SendPingAsync("192.168.10." + Id);
-                    if (res.Status == IPStatus.Success)
-                    {
-                        Color = "Lime";
-                    }
-                    else
-                    {
-                        Color = "Red";
-                    }
-
+                    Status = res.Status == IPStatus.Success;
                     await Task.Delay(2000);
                 }
             }
