@@ -49,14 +49,14 @@ namespace HolokinesisMonitor
 
         public async void Start()
         {
-            using (var ping = new Ping())
+            while (!IsDisposed)
             {
-                while (!IsDisposed)
+                using (var ping = new Ping())
                 {
-                    var res = await ping.SendPingAsync("192.168.10." + Id);
+                    var res = await ping.SendPingAsync("192.168.100." + Id);
                     Status = res.Status == IPStatus.Success;
-                    await Task.Delay(2000);
                 }
+                await Task.Delay(2000);
             }
         }
 
