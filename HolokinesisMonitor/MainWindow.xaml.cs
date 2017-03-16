@@ -21,16 +21,18 @@ namespace HolokinesisMonitor
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            switch (e.Key)
+            if (e.Key == Key.Q)
             {
-                case Key.Q:
-                    WindowState = WindowState.Maximized;
-                    WindowStyle = WindowStyle.None;
-                    break;
-                case Key.W:
+                if (WindowStyle == WindowStyle.None)
+                {
                     WindowStyle = WindowStyle.SingleBorderWindow;
                     WindowState = WindowState.Normal;
-                    break;
+                }
+                else
+                {
+                    WindowState = WindowState.Maximized;
+                    WindowStyle = WindowStyle.None;
+                }
             }
         }
     }
