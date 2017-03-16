@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 namespace HolokinesisMonitor
 {
-    class TargetModel : INotifyPropertyChanged
+    class TargetModel : INotifyPropertyChanged, IDisposable
     {
         public int Id { get; set; }
 
@@ -27,6 +28,8 @@ namespace HolokinesisMonitor
         private string _Color;
         private PropertyChangedEventArgs _ColorChangedEventArgs = new PropertyChangedEventArgs(nameof(Color));
 
+        public bool IsDisposed { get; private set; }
+
         public TargetModel()
         {
             Color = "Red";
@@ -36,7 +39,7 @@ namespace HolokinesisMonitor
         {
             using (var ping = new Ping())
             {
-                while (true)
+                while (!IsDisposed)
                 {
                     var res = await ping.SendPingAsync("192.168.10." + Id);
                     if (res.Status == IPStatus.Success)
@@ -51,6 +54,12 @@ namespace HolokinesisMonitor
                     await Task.Delay(2000);
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            if (IsDisposed) return;
+            IsDisposed = true;
         }
     }
 }

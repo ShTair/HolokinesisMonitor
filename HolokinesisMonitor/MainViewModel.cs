@@ -1,8 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 
 namespace HolokinesisMonitor
 {
-    class MainViewModel
+    class MainViewModel : IDisposable
     {
         public ObservableCollection<TargetModel> Targets { get; }
 
@@ -18,6 +19,14 @@ namespace HolokinesisMonitor
                 };
                 Targets.Add(tm);
                 tm.Start();
+            }
+        }
+
+        public void Dispose()
+        {
+            foreach (var target in Targets)
+            {
+                target.Dispose();
             }
         }
     }

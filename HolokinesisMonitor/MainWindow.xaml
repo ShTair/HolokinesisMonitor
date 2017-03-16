@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HolokinesisMonitor"
         mc:Ignorable="d"
-        Title="MainWindow" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+        Title="MainWindow" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
+        Closed="Window_Closed">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
