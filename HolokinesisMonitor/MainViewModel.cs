@@ -13,8 +13,9 @@ namespace HolokinesisMonitor
 
         public ObservableCollection<TargetModel> Targets { get; }
 
+        public ObservableCollection<string> Logs { get; }
+
         private int _count;
-        private object _countLock = new object();
 
         public double Percentage
         {
@@ -48,6 +49,8 @@ namespace HolokinesisMonitor
             _d = Dispatcher.CurrentDispatcher;
 
             Targets = new ObservableCollection<TargetModel>();
+            Logs = new ObservableCollection<string>();
+
             for (int i = 0; i < 10; i++)
             {
                 var tm = new TargetModel
@@ -57,12 +60,18 @@ namespace HolokinesisMonitor
                 };
                 tm.StatusChanged += status =>
                 {
-                    lock (_countLock)
+                    _d.Invoke(() =>
                     {
                         if (status) _count++;
                         else _count--;
                         Percentage = (double)_count * 100 / 10;
-                    }
+
+                        Logs.Insert(0, $"{DateTime.Now:HH:mm:ss} {tm.Id} {(status ? "Connected" : "Disconnected")}");
+                        while (Logs.Count > 50)
+                        {
+                            Logs.RemoveAt(Logs.Count - 1);
+                        }
+                    });
                 };
                 Targets.Add(tm);
                 tm.Start();

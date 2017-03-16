@@ -12,51 +12,62 @@
         <local:MainViewModel />
     </Window.DataContext>
     <Viewbox>
-        <Grid Height="500" Width="500">
-            <ItemsControl ItemsSource="{Binding Targets}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Grid />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Width="450" Height="450" RenderTransformOrigin="0.5,0.5">
-                            <Grid.RenderTransform>
-                                <TransformGroup>
-                                    <RotateTransform Angle="{Binding Angle}"/>
-                                </TransformGroup>
-                            </Grid.RenderTransform>
-                            <Grid Width="100" Height="100" VerticalAlignment="Top">
-                                <Ellipse StrokeThickness="5" Stroke="{Binding Color}" />
-                                <TextBlock RenderTransformOrigin="0.5,0.5" Text="{Binding Id}" HorizontalAlignment="Center" VerticalAlignment="Center"
+        <StackPanel Orientation="Horizontal">
+            <Grid HorizontalAlignment="Left" Height="500" Width="500">
+                <ItemsControl ItemsSource="{Binding Targets}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Grid />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="450" Height="450" RenderTransformOrigin="0.5,0.5">
+                                <Grid.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="{Binding Angle}"/>
+                                    </TransformGroup>
+                                </Grid.RenderTransform>
+                                <Grid Width="100" Height="100" VerticalAlignment="Top">
+                                    <Ellipse StrokeThickness="5" Stroke="{Binding Color}" />
+                                    <TextBlock RenderTransformOrigin="0.5,0.5" Text="{Binding Id}" HorizontalAlignment="Center" VerticalAlignment="Center"
                                        FontSize="48" Foreground="White">
-                                    <TextBlock.RenderTransform>
-                                        <TransformGroup>
-                                            <RotateTransform Angle="{Binding Angle2}"/>
-                                        </TransformGroup>
-                                    </TextBlock.RenderTransform>
-                                </TextBlock>
+                                        <TextBlock.RenderTransform>
+                                            <TransformGroup>
+                                                <RotateTransform Angle="{Binding Angle2}"/>
+                                            </TransformGroup>
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <Grid Width="180" Height="180">
-                <Ellipse Fill="Red" />
-                <ed:Arc ArcThickness="1" ArcThicknessUnit="Percent" EndAngle="{Binding Angle}" Fill="Lime"
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Grid Width="180" Height="180">
+                    <Ellipse Fill="Red" />
+                    <ed:Arc ArcThickness="1" ArcThicknessUnit="Percent" EndAngle="{Binding Angle}" Fill="Lime"
                 Stretch="None" StartAngle="0"/>
-                <Ellipse Fill="Black" Width="160" Height="160" />
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                    <StackPanel.Resources>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Foreground" Value="White" />
-                        </Style>
-                    </StackPanel.Resources>
-                    <TextBlock Text="{Binding Percentage}" FontSize="70" />
-                    <TextBlock Text="%" VerticalAlignment="Bottom" FontSize="40" />
-                </StackPanel>
+                    <Ellipse Fill="Black" Width="160" Height="160" />
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="White" />
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="{Binding Percentage}" FontSize="70" />
+                        <TextBlock Text="%" VerticalAlignment="Bottom" FontSize="40" />
+                    </StackPanel>
+                </Grid>
             </Grid>
-        </Grid>
+            <Grid HorizontalAlignment="Right" Width="250" Height="500">
+                <ItemsControl ItemsSource="{Binding Logs}" Margin="20">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" Foreground="White" FontSize="15" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </StackPanel>
     </Viewbox>
 </Window>
