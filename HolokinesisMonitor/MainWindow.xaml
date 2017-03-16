@@ -7,7 +7,7 @@
         x:Class="HolokinesisMonitor.MainWindow"
         mc:Ignorable="d"
         Title="Holokinesis Monitor" SizeToContent="WidthAndHeight"
-        Closed="Window_Closed" Background="Black" KeyUp="Window_KeyUp">
+        Closed="Window_Closed" Background="Black" KeyUp="Window_KeyUp" Cursor="None">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
