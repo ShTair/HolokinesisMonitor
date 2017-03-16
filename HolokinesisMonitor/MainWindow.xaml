@@ -10,7 +10,7 @@
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
-    <Grid Height="500" Width="500">
+    <Grid Height="500" Width="500" Background="Black">
         <ItemsControl ItemsSource="{Binding Targets}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -27,7 +27,8 @@
                         </Grid.RenderTransform>
                         <Grid Width="100" Height="100" VerticalAlignment="Top">
                             <Ellipse StrokeThickness="5" Stroke="{Binding Color}" />
-                            <TextBlock RenderTransformOrigin="0.5,0.5" Text="{Binding Id}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48">
+                            <TextBlock RenderTransformOrigin="0.5,0.5" Text="{Binding Id}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       FontSize="48" Foreground="White">
                                 <TextBlock.RenderTransform>
                                     <TransformGroup>
                                         <RotateTransform Angle="{Binding Angle2}"/>
